@@ -3,7 +3,7 @@
 set -e
 set -x
 
-sudo apt-get install -qq build-essential binutils automake autoconf libtool pkg-config
+sudo apt-get install -qq build-essential binutils automake autoconf libtool pkg-config uuid-dev
 
 git clone --depth=50 --branch=develop https://github.com/TaliskerPlatform/idl.git
 cd idl
