@@ -1,0 +1,45 @@
+cpp_quote("/* Talisker");
+cpp_quote(" * Foundation Toolkit");
+cpp_quote(" */");
+cpp_quote("");
+cpp_quote("/* Copyright 2012-2017 Mo McRoberts.");
+cpp_quote(" *");
+cpp_quote(" *  Licensed under the Apache License, Version 2.0 (the \"License\");");
+cpp_quote(" *  you may not use this file except in compliance with the License.");
+cpp_quote(" *  You may obtain a copy of the License at");
+cpp_quote(" *");
+cpp_quote(" *      http://www.apache.org/licenses/LICENSE-2.0");
+cpp_quote(" *");
+cpp_quote(" *  Unless required by applicable law or agreed to in writing, software");
+cpp_quote(" *  distributed under the License is distributed on an \"AS IS\" BASIS,");
+cpp_quote(" *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.");
+cpp_quote(" *  See the License for the specific language governing permissions and");
+cpp_quote(" *  limitations under the License.");
+cpp_quote(" */");
+
+import "IFactory.idl";
+
+[
+	object,
+	uuid(53f81d3a-1179-4484-b2b1-41365dd52eea),
+	cheader("FoundationKit/IRegistry.h")
+]
+interface IRegistry: IObject
+{
+	typedef IObject *(*IRegistryConstructor)(void);
+
+	/* Register a factory instance for a class */
+	int registerFactory(const uuid_t clsid, IObject *factory);	
+	/* Unregister a factory instance for a class */
+	int unregisterFactory(const uuid_t clsid, IObject *factory);	
+	/* Obtain a factory for a class */
+	int classObject(const uuid_t clsid, const uuid_t iid, void **factory);
+	/* Directly construct an instance using a constructor or IFactory */
+	int construct(const uuid_t clsid, const uuid_t iid, void **object);
+	/* Obtain a factory for a class, provided it implements IFactory */
+	[local] IFactory *factory(const uuid_t clsid);
+	/* Register a local constructor for a class */
+	[local] int registerConstructor(const uuid_t clsid, IRegistryConstructor constructor);
+	/* Unregister a local constructor for a class */
+	[local] int unregisterConstructor(const uuid_t clsid, IRegistryConstructor constructor);
+}

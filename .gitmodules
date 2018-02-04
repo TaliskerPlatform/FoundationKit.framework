@@ -1,0 +1,6 @@
+[submodule "ThirdParty/uriparser"]
+	path = ThirdParty/uriparser
+	url = git://github.com/uriparser/uriparser.git
+[submodule "ThirdParty/uthash"]
+	path = ThirdParty/uthash
+	url = git://github.com/troydhanson/uthash.git

@@ -1,0 +1,44 @@
+cpp_quote("/* Talisker");
+cpp_quote(" * Foundation Toolkit");
+cpp_quote(" */");
+cpp_quote("");
+cpp_quote("/* Copyright 2012-2017 Mo McRoberts.");
+cpp_quote(" *");
+cpp_quote(" *  Licensed under the Apache License, Version 2.0 (the \"License\");");
+cpp_quote(" *  you may not use this file except in compliance with the License.");
+cpp_quote(" *  You may obtain a copy of the License at");
+cpp_quote(" *");
+cpp_quote(" *      http://www.apache.org/licenses/LICENSE-2.0");
+cpp_quote(" *");
+cpp_quote(" *  Unless required by applicable law or agreed to in writing, software");
+cpp_quote(" *  distributed under the License is distributed on an \"AS IS\" BASIS,");
+cpp_quote(" *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.");
+cpp_quote(" *  See the License for the specific language governing permissions and");
+cpp_quote(" *  limitations under the License.");
+cpp_quote(" */");
+
+import "IObject.idl";
+
+[
+	object,
+	uuid(ca20ee39-4290-4c3e-a02f-c83ccccb57ff),
+	pointer_default(unique),
+	cheader("FoundationKit/IVariant.h")
+]
+interface IVariant: IObject
+{
+	/* Basic types */
+	const short T_UNDEFINED = 0;
+	const short T_VOID = 1;
+	const short T_STRING = 2;
+	const short T_BOOLEAN = 3;
+	const short T_INT = 4;
+	const short T_DECIMAL = 5;
+	const short T_ARRAY = 6;
+	const short T_OBJECT = 7;   
+	const short T_UUID = 8;
+	const short T_DATETIME = 9;
+
+	int typeCode(void);
+	
+}

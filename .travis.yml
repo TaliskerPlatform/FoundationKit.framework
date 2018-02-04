@@ -1,0 +1,10 @@
+language: c
+dist: trusty
+sudo: required
+compiler: clang
+before_install:
+- sudo apt-get install -qq build-essential clang binutils automake autoconf libtool pkg-config
+before_script:
+- autoreconf -fvi
+script:
+- ./configure && make && make check

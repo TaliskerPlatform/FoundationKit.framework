@@ -1,0 +1,14 @@
+/FoundationKit
+/interfaces.h
+/IAllocator.h
+/IApplicationDelegate.h
+/IApplication.h
+/IControl.h
+/IEvent.h
+/IFactory.h
+/Interfaces.h
+/IObject.h
+/IRegistry.h
+/IArray.h
+/IDictionary.h
+/IString.h
