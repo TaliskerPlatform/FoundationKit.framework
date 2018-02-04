@@ -31,8 +31,8 @@ namespace Talisker {
 		virtual ~Object();
 	public:
 		virtual __stdcall int queryInterface(const uuid_t riid, void **object);
-		virtual __stdcall unsigned long retain();
-		virtual __stdcall unsigned long release();
+		virtual __stdcall uint32_t retain();
+		virtual __stdcall uint32_t release();
 	protected:
 		uint32_t m_refcount;
 	};

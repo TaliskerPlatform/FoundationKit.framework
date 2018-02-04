@@ -34,7 +34,7 @@ Object::~Object()
 {
 	if(m_refcount > 1)
 	{
-		Talisker::notice("[Object::~Object]: destroying object %08x while dangling or corrupted references exist\n", (unsigned long)  static_cast<ptrdiff_t>(static_cast<void *>(this));
+		Talisker::notice("[Object::~Object]: destroying object %08x while dangling or corrupted references exist\n", (unsigned long)  static_cast<void *>(this));
 	}
 }
 
@@ -54,14 +54,14 @@ Object::queryInterface(const uuid_t riid, void **object)
 
 /* XXX These methods are lacking barriers at present */
 
-unsigned long __stdcall
+uint32_t __stdcall
 Object::retain(void)
 {
 	m_refcount++;
 	return m_refcount;
 }
 
-unsigned long __stdcall
+uint32_t __stdcall
 Object::release(void)
 {
 	if(m_refcount == 1)
