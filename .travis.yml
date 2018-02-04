@@ -1,6 +1,13 @@
 language: c
-dist: trusty
-sudo: required
+matrix:
+  include:
+    - os: linux
+      dist: trusty
+      sudo: required
+    - os: linux
+      dist: precise
+      sudo: required
+    - os: macosx
 compiler: clang
 before_install:
 - sudo apt-get install -qq build-essential clang binutils automake autoconf libtool pkg-config
