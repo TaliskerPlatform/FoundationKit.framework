@@ -20,9 +20,7 @@ idlgenerated = Interfaces.h \
 
 CLEANFILES = $(idlgenerated) ${frameworkname}
 
-headersdir = /Library/Frameworks/FoundationKit.framework/Versions/$(VERSION)/Headers/FoundationKit
-
-headers_HEADERS = Declarations.h \
+frameworkheaders_HEADERS = Declarations.h \
 	$(idlgenerated) \
 	Object.hh Process.hh DefaultAllocator.hh Thread.hh String.hh URI.hh \
 	Factory.hh UUID.hh Registry.hh Array.hh Dictionary.hh
