@@ -4,6 +4,8 @@ sudo: required
 compiler: clang
 before_install:
 - sudo apt-get install -qq build-essential clang binutils automake autoconf libtool pkg-config
+- git --depth=5- --branch=develop https://github.com/TaliskerPlatform/idl.git
+- cd idl && git submodule update --init --recursive && autoreconf -fvi && ./configure && make && sudo make install && cd ..
 before_script:
 - autoreconf -fvi
 script:
