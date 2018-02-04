@@ -15,7 +15,7 @@
 ##  limitations under the License.
 
 idlgenerated = Interfaces.h \
-	IAllocator.h IDictionary.h IFactory.h IObject.h IRegistry.h \
+	IAllocator.h IArray IDictionary.h IFactory.h IObject.h IRegistry.h \
 	IString.h IVariant.h
 
 CLEANFILES = $(idlgenerated) ${frameworkname}
