@@ -1,17 +1,27 @@
 language: c
+
 matrix:
   include:
     - os: linux
       dist: trusty
       sudo: required
       compiler: clang
+      env:
+        - FOR=linux-trusty-clang
     - os: linux
       dist: precise
       sudo: required
-    - os: macosx
+      env:
+        - FOR=linux-precise-gcc
+    - os: osx
+      env:
+        - FOR=osx
+
 before_install:
 - Resources/Travis/before_install.sh
+
 before_script:
 - autoreconf -fvi
+
 script:
 - ./configure && make && make check
