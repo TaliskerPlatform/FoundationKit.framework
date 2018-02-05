@@ -37,6 +37,9 @@ extern "C" void talisker_fini_(void) __attribute__((destructor(100)));
 extern "C" int NXArgc;
 extern "C" char **NXArgv;
 #endif
+#if defined(HAVE__DL_ARGV)
+extern "C" char **_dl_argv;
+#endif
 #if defined(HAVE_ENVIRON)
 extern char **environ;
 #endif
@@ -54,6 +57,10 @@ talisker_init_(void)
 #if defined(HAVE_NXARGC) && defined(HAVE_NXARGV)
 	argc = NXArgc;
 	argv = NXArgv;
+#endif
+#if defined(HAVE__DL_ARGV)
+	argv = _dl_argv;
+	for(argc = 0; argv && argv[argc]; argc++) { }
 #endif
 #if defined(HAVE_ENVIRON)
 	envp = environ;

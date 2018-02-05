@@ -75,7 +75,7 @@ AC_SUBST([AM_LDFLAGS])
 ## Project-specific compilation environment tests                          ##
 #############################################################################
 
-AC_CHECK_FUNCS([NXArgc NXArgv __progname environ])
+AC_CHECK_FUNCS([NXArgc NXArgv __progname _dl_argv environ])
 
 AC_CHECK_FUNC([uuid_generate],,[
 	AC_CHECK_LIB([uuid],[uuid_generate],,[
