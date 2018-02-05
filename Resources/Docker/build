@@ -84,19 +84,30 @@ RUN cd /root/BuildRoot && \
 
 RUN cd /root/BuildRoot/$PACKAGE && \
 	autoreconf -fvi && \
-	./configure && \
-	make clean && \
-	make && \
-	make check && \
-	make install
+	./configure
+
+RUN cd /root/BuildRoot/$PACKAGE && make clean
+RUN cd /root/BuildRoot/$PACKAGE && make all
+RUN cd /root/BuildRoot/$PACKAGE && make check
+RUN cd /root/BuildRoot/$PACKAGE && make install
 EOF
 	docker build -t $IMAGE:$subdir .
 	result=$?
 	if test $result -ne 0 ; then
 		echo "**** Docker build failed with status $result ****" >&2
-		exit $result
+		return $result
 	fi
 	cd ../..
+	return 0
+}
+
+function build_one()
+{
+	clean
+	build "$1"
+	result=$?
+	clean
+	exit $?
 }
 
 function list()
@@ -129,13 +140,19 @@ function prepare_all()
 
 function build_all()
 {
-	test -d DockerBuild && rm -f DockerBuild/$IMAGE-dockerroot.tar.gz
+	clean
+	result=0
 	for subdir in `cd Resources/Docker && echo *` ; do
 		if test -r "Resources/Docker/$subdir/Dockerfile" ; then
 			build "$subdir"
+			result=$?
+			if test $result -ne 0 ; then
+				break
+			fi
 		fi
 	done
-	rm -f DockerBuild/$IMAGE-dockerroot.tar.gz
+	clean
+	exit $result
 }
 
 function usage()
@@ -178,8 +195,7 @@ case "$1" in
 		;;
 	*)
 		if test -r Resources/Docker/"$1"/Dockerfile ; then
-			build "$1"
-			test -d DockerBuild && rm -f DockerBuild/$IMAGE-dockerroot.tar.gz
+			build_one "$1"
 		else
 			usage
 		fi
