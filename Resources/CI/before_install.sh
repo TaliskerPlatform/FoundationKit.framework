@@ -74,6 +74,12 @@ if test -r /etc/os-release ; then
 	system_fullname="$PRETTY_NAME"
 fi
 
+case "$system_family" in
+	rhel*)
+		system_family="redhat"
+		;;
+esac
+
 test x"$system_family" = x"" && system_family="`echo $system_kind`"
 test x"$system_type" = x"" && system_type="`echo $system_name | tr A-Z a-z | sed s@[^a-z]*@@g`"
 test x"$system_version" = x"" && system_version="`uname -r`"
@@ -137,7 +143,7 @@ fi
 ## Dependency package installation for CI environments                     ##
 #############################################################################
 
-if test $system_family = debian ; then
+if test x"$system_family" = debian ; then
 	
 	if test $system_type = ubuntu ; then
 		run $SUDO add-apt-repository ppa:ubuntu-toolchain-r/test -y
