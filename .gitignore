@@ -27,3 +27,4 @@ Makefile.in
 /stamp-h*
 /confdefs.h
 /libtool
+/DockerBuild
