@@ -97,6 +97,8 @@ case "$host_os" in
 		AS_VAR_SET([frameworklibdir], ['${frameworklibdir}'])
 		AS_VAR_SET([frameworkheadersdir], ['${frameworkdir}/Versions/${VERSION}/Headers'])
 		AS_VAR_SET([frameworkdocdir], ['${frameworkdir}/Documentation'])
+		AS_VAR_SET([framework_fixups], [yes])
+		AS_VAR_SET([dylibext],['.dylib'])
 		;;
 	*)
 		AS_VAR_SET([frameworkdir], ['${prefix}'])
@@ -104,6 +106,7 @@ case "$host_os" in
 		AS_VAR_SET([frameworklibdir], ['${libdir}'])
 		AS_VAR_SET([frameworkheadersdir], ['${includedir}/${PACKAGE_NAME}'])
 		AS_VAR_SET([frameworkdocdir],['${datarootdir}/doc/${PACKAGE_NAME}'])
+		AS_VAR_SET([dylibext],['.so'])
 esac
 
 AC_SUBST([frameworkname])
@@ -111,6 +114,9 @@ AC_SUBST([frameworkdir])
 AC_SUBST([frameworklibdir])
 AC_SUBST([frameworkheadersdir])
 AC_SUBST([frameworkdocdir])
+AC_SUBST([dylibext])
+
+AM_CONDITIONAL([FRAMEWORK_FIXUPS], [test x"$framework_fixups" = x"yes"])
 
 #############################################################################
 ## Output files                                                            ##

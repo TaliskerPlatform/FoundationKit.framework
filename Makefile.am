@@ -27,8 +27,10 @@ frameworkdoc_DATA = LICENSE-2.0
 #############################################################################
 
 install-data-hook:
+if FRAMEWORK_FIXUPS
 	$(MKDIR_P) '$(DESTDIR)$(frameworkdir)/Versions'
 	cd $(DESTDIR)$(frameworkdir)/Versions && $(LN_S) $(VERSION) Current
 	cd $(DESTDIR)$(frameworkdir) && $(LN_S) Versions/Current/Headers/$(frameworkname) Headers
 	cd $(DESTDIR)$(frameworkdir) && $(LN_S) Versions/Current/Documentation Documentation
-	cd ($DESTDIR)$(frameworkdir) && $(LN_S) Versions/Current/Libraries/lib$(frameworkname).@shrext_cmds@ $(frameworkname)
+	cd $(DESTDIR)$(frameworkdir) && $(LN_S) Versions/Current/Libraries/lib$(frameworkname).@dylibext@ $(frameworkname)
+endif
