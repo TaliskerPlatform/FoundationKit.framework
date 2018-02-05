@@ -27,6 +27,12 @@ if ! test -r Resources/Docker/jessie/Dockerfile 2>&1 ; then
 	exit 1
 fi
 
+function clean()
+{
+	echo "removing temporary build resources (DockerBuild)..." >&2
+	rm -rf DockerBuild
+}
+
 function update()
 {
 	echo "building Docker image $IMAGE-base:$subdir..." >&2
@@ -138,6 +144,7 @@ function usage()
 	echo ""
 	echo "Usage (from top of $PACKAGE source tree):"
 	echo "  Resources/Docker/build all       Build for all targets"
+	echo "  Resources/Docker/build clean     Remove build files"
 	echo "  Resources/Docker/build prepare   Ensure base images exist"
 	echo "  Resources/Docker/build update    Update base images"
 	echo "  Resources/Docker/build list      List available targets"
@@ -154,7 +161,11 @@ fi
 
 case "$1" in
 	all)
-		all
+		clean
+		build_all
+		;;
+	clean)
+		clean
 		;;
 	up|update)
 		update_all
