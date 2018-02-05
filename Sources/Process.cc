@@ -30,6 +30,45 @@ static char **process_argv;
 static char **process_envp;
 static Process *process;
 
+extern "C" void talisker_init_(void) __attribute__((constructor(100)));
+extern "C" void talisker_fini_(void) __attribute__((destructor(100)));
+
+#if defined(HAVE_NXARGC) && defined(HAVE_NXARGV)
+extern "C" int NXArgc;
+extern "C" char **NXArgv;
+#endif
+#if defined(HAVE_ENVIRON)
+extern char **environ;
+#endif
+
+extern "C" void
+talisker_init_(void)
+{
+	int argc = 1;
+	static const char *def_argv[] = { "(null)", NULL };
+	static const char *def_envp[] = { NULL, NULL };
+	char **argv, **envp;
+	
+	argv = (char **) (const char **) def_argv;
+	envp = (char **) (const char **) def_envp;
+#if defined(HAVE_NXARGC) && defined(HAVE_NXARGV)
+	argc = NXArgc;
+	argv = NXArgv;
+#endif
+#if defined(HAVE_ENVIRON)
+	envp = environ;
+#endif
+	talisker_init_process_(argc, argv, envp);
+	talisker_init_thread_pre_();
+	talisker_init_thread_();
+}
+
+extern "C" void
+talisker_fini_(void)
+{
+	talisker_fini_thread_pre_();
+}
+
 extern "C" void
 talisker_init_process_(int argc, char **argv, char **envp)
 {

@@ -18,7 +18,7 @@ ACLOCAL_AMFLAGS = -I M4
 
 EXTRA_DIST = README.md LICENSE-2.0
 
-SUBDIRS = ThirdParty IDL Headers Sources .
+SUBDIRS = ThirdParty IDL Headers Sources Tests .
 
 frameworkdoc_DATA = LICENSE-2.0
 

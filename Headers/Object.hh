@@ -22,10 +22,16 @@
 
 # include "IObject.h"
 
+# if defined(__cplusplus)
+
+/* C++ interface to Talisker::Object */
+
 namespace Talisker {
 
 	class TALISKER_EXPORT_ Object: virtual public IObject
 	{
+	public:
+		static IObject *createObject(void) ALIAS(Talisker.Object.createObject);
 	public:
 		Object();
 		virtual ~Object();
@@ -38,5 +44,13 @@ namespace Talisker {
 	};
 
 };
+
+# else
+
+/* C interface to Talisker::Object */
+
+IObject *Talisker_Object_createObject(void) ALIAS(Talisker.Object.createObject);
+
+# endif
 
 #endif /*!TALISKER_OBJECT_HH_*/

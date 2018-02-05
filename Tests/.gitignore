@@ -1,0 +1,5 @@
+*.trs
+*.log
+/t-*
+!/t-*.c
+/.lldb.script

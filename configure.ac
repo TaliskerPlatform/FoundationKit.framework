@@ -51,11 +51,15 @@ LT_INIT
 if test x"$GCC" = x"yes" ; then
 	AS_VAR_APPEND([AM_CFLAGS], ['-W -Wall '])
 	AS_VAR_APPEND([AM_CFLAGS], ['-fvisibility=hidden '])
+	AS_VAR_APPEND([AM_CFLAGS], ['-O0 '])
+	AS_VAR_APPEND([AM_CFLAGS], ['-g '])
 fi
 
 if test x"$GXX" = x"yes" ; then
 	AS_VAR_APPEND([AM_CXXFLAGS], ['-W -Wall '])
 	AS_VAR_APPEND([AM_CXXFLAGS], ['-fvisibility=hidden '])
+	AS_VAR_APPEND([AM_CXXFLAGS], ['-O0 '])
+	AS_VAR_APPEND([AM_CXXFLAGS], ['-g '])
 fi
 
 AS_VAR_APPEND([AM_CPPFLAGS], ['-I${top_srcdir}/Headers '])
@@ -70,6 +74,8 @@ AC_SUBST([AM_LDFLAGS])
 #############################################################################
 ## Project-specific compilation environment tests                          ##
 #############################################################################
+
+AC_CHECK_FUNCS([NXArgc NXArgv __progname environ])
 
 AC_CHECK_FUNC([uuid_generate],,[
 	AC_CHECK_LIB([uuid],[uuid_generate],,[
@@ -139,6 +145,7 @@ IDL/Makefile
 Headers/Makefile
 Sources/Makefile
 ThirdParty/Makefile
+Tests/Makefile
 ])
 
 AC_OUTPUT

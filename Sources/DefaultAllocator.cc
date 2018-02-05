@@ -27,27 +27,14 @@ using namespace Talisker;
 
 static struct block_head_struct *block_head(void *ptr);
 
-static DefaultAllocator *def_allocator = NULL;
-
-extern "C" void
-talisker_init_allocator_(void)
-{
-	def_allocator = new DefaultAllocator();
-}
-
-extern "C" void
-talisker_fini_allocator_(void)
-{
-	delete def_allocator;
-	def_allocator = NULL;
-}
+static DefaultAllocator def_allocator;
 
 /* Return the shared default allocator instance */
 IAllocator *
 DefaultAllocator::defaultAllocator(void)
 {
-	def_allocator->m_refcount = -1;
-	return def_allocator;
+	def_allocator.m_refcount = -1;
+	return &def_allocator;
 }
 
 DefaultAllocator::DefaultAllocator():

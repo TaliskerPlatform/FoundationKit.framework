@@ -1,0 +1,4 @@
+#! /bin/sh
+
+exec ../libtool --mode=execute gdb --args $*
+exit $?

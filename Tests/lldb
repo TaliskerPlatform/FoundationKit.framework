@@ -1,0 +1,12 @@
+#! /bin/sh
+
+rm -f .lldb.script
+cat >.lldb.script <<EOF
+image add ../Sources/.libs/libFoundationKit.dylib
+env DYLD_LIBRARY_PATH="`(cd .. && pwd)`/Sources/.libs:$DYLD_LIBRARY_PATH"
+EOF
+../libtool --mode=execute lldb -s .lldb.script -- $*
+result=$?
+rm -f .lldb.script
+exit $result
+

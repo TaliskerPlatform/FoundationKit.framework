@@ -81,5 +81,11 @@ struct Talisker::DictionaryPrivate
 	UT_hash_handle hh;
 };
 
+extern "C" void talisker_init_process_(int argc, char **argv, char **envp);
+extern "C" void talisker_fini_process_(void);
+extern "C" void talisker_init_thread_pre_(void);
+extern "C" void talisker_init_thread_(void);
+extern "C" void talisker_fini_thread_pre_(void);
+extern "C" void talisker_fini_thread_(void);
 
 #endif /*!P_FOUNDATION_HH_*/

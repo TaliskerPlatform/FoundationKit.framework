@@ -27,11 +27,12 @@
 # include "IFactory.h"
 # include "IRegistry.h"
 
-# if defined(__cplusplus)
-
 /* Foundation Toolkit classes */
 
 #  include "Object.hh"
+
+# if defined(__cplusplus)
+
 #  include "Factory.hh"
 #  include "DefaultAllocator.hh"
 #  include "Process.hh"

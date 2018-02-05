@@ -25,6 +25,28 @@
 
 using namespace Talisker;
 
+class DebugObject : public Object
+{
+public:
+	
+	DebugObject():
+		Object::Object()
+	{
+		Talisker::debug("[DebugObject::DebugObject] creating a new debugging Object 0x%08x\n", (unsigned long)  static_cast<void *>(this));
+	}
+
+	virtual ~DebugObject()
+	{
+		Talisker::debug("[DebugObject::~DebugObject] Object 0x%08x has reached end-of-life\n", (unsigned long)  static_cast<void *>(this));
+	}
+};
+
+IObject *
+Object::createObject()
+{
+	return new DebugObject();
+}
+
 Object::Object():
 	m_refcount(1)
 {
@@ -32,9 +54,9 @@ Object::Object():
 
 Object::~Object()
 {
-	if(m_refcount > 1)
+	if(m_refcount > 1 && m_refcount != (uint32_t) -1)
 	{
-		Talisker::notice("[Object::~Object]: destroying object %08x while dangling or corrupted references exist\n", (unsigned long)  static_cast<void *>(this));
+		Talisker::notice("[Object::~Object]: destroying object 0x%08x while dangling or corrupted references exist\n", (unsigned long)  static_cast<void *>(this));
 	}
 }
 

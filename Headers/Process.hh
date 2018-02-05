@@ -24,16 +24,16 @@
 
 namespace Talisker {
 
-	void TALISKER_EXPORT_ debug(const char *format, ...);
-	void TALISKER_EXPORT_ log(const char *format, ...);
-	void TALISKER_EXPORT_ notice(const char *format, ...);
-	void TALISKER_EXPORT_ warn(const char *format, ...);
-	void TALISKER_EXPORT_ err(const char *format, ...);
+	void TALISKER_EXPORT_ debug(const char *format, ...) ALIAS(Talisker.debug);
+	void TALISKER_EXPORT_ log(const char *format, ...) ALIAS(Talisker.log);
+	void TALISKER_EXPORT_ notice(const char *format, ...) ALIAS(Talisker.notice);
+	void TALISKER_EXPORT_ warn(const char *format, ...) ALIAS(Talisker.warn);
+	void TALISKER_EXPORT_ err(const char *format, ...) ALIAS(Talisker.err);
 
 	class TALISKER_EXPORT_ Process: public Object
 	{
 	public:
-		static Process *currentProcess();
+		static Process *currentProcess() ALIAS(Talisker.Process.currentProcess);
 	public:
 		virtual ~Process();
 

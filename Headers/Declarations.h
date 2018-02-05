@@ -24,6 +24,13 @@
 #  define __stdcall /* */
 # endif
 
+# if defined(__GNUC__)
+#  define ALIAS(name__) \
+	__asm__(#name__)
+# else
+#  define ALIAS(name__) /* */
+# endif
+
 # if defined(__cplusplus)
 
 /* COM interface declarations for C++ */
@@ -52,7 +59,7 @@
 	}; \
 	struct name__##_vtable_
 #  define DECLARE_INTERFACE_(name__, parent__) \
-	DECLARE_INTERFACE(name)
+	DECLARE_INTERFACE(name__)
 #  define BEGIN_INTERFACE /* */
 #  define END_INTERFACE /* */
 #  define THIS \
@@ -63,7 +70,7 @@
 #  define STDMETHOD_(type__, name__) \
 	type__ __stdcall (*name__)
 #  define STDMETHOD(name__) \
-	STDMETHOD(int, name__)
+	STDMETHOD_(int, name__)
 
 # endif /*__cplusplus*/
 
