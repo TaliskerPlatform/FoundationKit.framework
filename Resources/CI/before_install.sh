@@ -101,7 +101,7 @@ if test x"$SUDO" = x"" ; then
 	saveIFS=$IFS ; IFS=:
 	for dir in $PATH ; do
 		if test -x "$dir/$name" ; then
-			$SUDO="$dir/$name"
+			SUDO="$dir/$name"
 			break
 		fi
 	done
