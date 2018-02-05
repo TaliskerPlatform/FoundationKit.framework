@@ -32,6 +32,7 @@ AC_CONFIG_HEADER([config.h])
 #############################################################################
 
 AC_PROG_LN_S
+AC_PROG_CC([clang c99 g++ cc])
 AC_PROG_CXX([clang++ g++ c++])
 
 AC_CHECK_PROG([IDL],[idl],[idl],)
@@ -43,6 +44,18 @@ ${DESC}.
 The source repository for the compiler can be found at:
   <https://github.com/TaliskerPlatform/idl>
 ])
+fi
+
+LT_INIT
+
+if test x"$GCC" = x"yes" ; then
+	AS_VAR_APPEND([AM_CFLAGS], ['-W -Wall '])
+	AS_VAR_APPEND([AM_CFLAGS], ['-fvisibility=hidden '])
+fi
+
+if test x"$GXX" = x"yes" ; then
+	AS_VAR_APPEND([AM_CXXFLAGS], ['-W -Wall '])
+	AS_VAR_APPEND([AM_CXXFLAGS], ['-fvisibility=hidden '])
 fi
 
 AS_VAR_APPEND([AM_CPPFLAGS], ['-I${top_srcdir}/Headers '])
@@ -57,8 +70,6 @@ AC_SUBST([AM_LDFLAGS])
 #############################################################################
 ## Project-specific compilation environment tests                          ##
 #############################################################################
-
-LT_INIT
 
 AC_CHECK_FUNC([uuid_generate],,[
 	AC_CHECK_LIB([uuid],[uuid_generate],,[
