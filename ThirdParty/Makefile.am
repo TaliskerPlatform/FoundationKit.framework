@@ -14,11 +14,28 @@
 ##  See the License for the specific language governing permissions and
 ##  limitations under the License.
 
-SUBDIRS = uriparser
+DIST_SUBDIRS = uriparser libxml2 jansson
+
+SUBDIRS = .
 
 EXTRA_DIST = uriparser-Makefile.am
 
 dist_noinst_DATA = uriparser/COPYING uthash/LICENSE
+
+all-local:
+	cd uriparser && $(MAKE) all
+	cd jansson && $(MAKE) all
+	cd libxml2 && $(MAKE) all
+
+clean-local:
+	cd uriparser && $(MAKE) clean
+	cd jansson && $(MAKE) clean
+	cd libxml2 && $(MAKE) clean
+
+distclean-local:
+	cd uriparser && $(MAKE) distclean
+	cd jansson && $(MAKE) distclean
+	cd libxml2 && $(MAKE) distclean
 
 install-data-hook:
 	$(mkinstalldirs) $(DESTDIR)${frameworkdocdir}

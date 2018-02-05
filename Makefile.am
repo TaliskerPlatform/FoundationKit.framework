@@ -14,8 +14,6 @@
 ##  See the License for the specific language governing permissions and
 ##  limitations under the License.
 
-ACLOCAL_AMFLAGS = -I M4
-
 EXTRA_DIST = README.md LICENSE-2.0
 
 SUBDIRS = ThirdParty IDL Headers Sources Tests .
@@ -23,7 +21,13 @@ SUBDIRS = ThirdParty IDL Headers Sources Tests .
 frameworkdoc_DATA = LICENSE-2.0
 
 #############################################################################
-## Global Installation hook for "framework" projects
+## Autotools options                                                       ##
+#############################################################################
+
+ACLOCAL_AMFLAGS = -I M4
+
+#############################################################################
+## Global Installation hook for "framework" projects                       ##
 #############################################################################
 
 install-data-hook:
@@ -34,3 +38,9 @@ if FRAMEWORK_FIXUPS
 	cd $(DESTDIR)$(frameworkdir) && $(LN_S) Versions/Current/Documentation Documentation
 	cd $(DESTDIR)$(frameworkdir) && $(LN_S) Versions/Current/Libraries/lib$(frameworkname).@dylibext@ $(frameworkname)
 endif
+
+#############################################################################
+## Global substitutions for all projects                                   ##
+#############################################################################
+
+@tal_m4_update@

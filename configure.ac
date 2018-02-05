@@ -23,6 +23,7 @@ AC_INIT([FoundationKit],[develop])
 AS_VAR_SET([DESC], ["Talisker Foundation Toolkit framework"])
 AC_CONFIG_AUX_DIR([BuildScripts])
 AC_CONFIG_MACRO_DIR([M4])
+TAL_INIT
 AM_INIT_AUTOMAKE([foreign subdir-objects])
 AM_MAINTAINER_MODE
 AC_CONFIG_HEADER([config.h])
@@ -38,7 +39,7 @@ AC_PROG_CXX([clang++ g++ c++])
 AC_CHECK_PROG([IDL],[idl],[idl],)
 if test x"$IDL" = x"" ; then
 	AC_MSG_ERROR([
-Cannot locate the Talisker IDL compiler, which is required to build the
+Cannot locate the Talisker IDL compiler, which is required to build
 ${DESC}.
 
 The source repository for the compiler can be found at:
@@ -100,6 +101,9 @@ AC_CHECK_FUNC([dlopen],,[
 
 
 PRIVATE_CONFIG_URIPARSER
+
+TAL_CONFIG_SUBDIR([ThirdParty/jansson])
+TAL_CONFIG_SUBDIR([ThirdParty/libxml2],,[--without-python --with-minimum --with-output])
 
 #############################################################################
 ## Substitute variables for a "framework" project                          ##
