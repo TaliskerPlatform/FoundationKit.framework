@@ -218,6 +218,7 @@ This project incorporates (via Git submodules), the following:
 * [uthash](https://github.com/troydhanson/uthash) by Troy D. Hanson, licensed according to the terms of a [MIT/X11-style licence](https://github.com/troydhanson/uthash/blob/3fbec3efe5b5645852c3c123fae9b3a419c929f9/LICENSE).
 * [jansson](https://github.com/akheron/jansson) by Petri Lehtinen, licensed according to the terms of a [MIX/X11-style licence](https://github.com/akheron/jansson/blob/074bb3838f83c8ed5b2ec3ec075c9405e6589214/LICENSE).
 * [libxml2](https://libxml2.org) by the GNOME Project, licensed accoerding to the terms of a [MIT/X11-style licence](https://github.com/GNOME/libxml2/blob/bc5a5d658320c37e206fe4e7b525b4a24466d0c6/Copyright).
+
 See the [`ThirdParty`](ThirdParty) directory for further details.
 
 [travis]: https://img.shields.io/travis/TaliskerPlatform/FoundationKit.framework.svg
