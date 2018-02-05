@@ -70,7 +70,7 @@ Now that you've cloned the repository and its sub-modules, you can either procee
 
 ### Building from source
 
-**Note**: You can use [Docker](https://docker.com) to orchestrate your build process if you prefer; see _[Building with Docker](#building-with-docker)_ for further information.
+**Note**: You can use [Docker](https://docker.com) to orchestrate your build process if you prefer; see the _[Building with Docker](#building-with-docker)_ section, below, for further information.
 
 #### Preparing the source tree
 
@@ -141,9 +141,9 @@ On other systems, Foundation Toolkit is installed to `${libdir}` and `${included
 
 ### Building with Docker
 
-(See also the _[Building from source](#building-from-soure)_ section above)
+**Note:** For instructions on building from source _without_ Docker, see the _[Building from source](#building-from-source)_ section, above, for further information.
 
-Once you have cloned this repository, you can run the following:
+Once you have [cloned this repository](#cloning-the-repository), you can run the following:
 
 ```
 $ Resources/Docker/build
@@ -170,23 +170,49 @@ You can build for a single target by specifying its name:
 
 ```
 $ Resources/Docker/build jessie
+...
 ```
 
 Or you can build for each of the targets in turn:
 
 ```
 $ Resources/Docker/build all
+...
 ```
 
 The `prepare` operand creates base images for each of the targets (whose `Dockerfile`s can be found in
 [`Resources/Docker/*`](Resources/Docker)), and is invoked automatically as part of a build, but you can run it manually
-if you wish. If you want to update your base images, you can use:
+if you wish:
+
+```
+$ Resources/Docker/build prepare
+checking for Docker image foundationkit-base:centos7... found
+checking for Docker image foundationkit-base:jessie... found
+checking for Docker image foundationkit-base:precise... found
+checking for Docker image foundationkit-base:stretch... found
+checking for Docker image foundationkit-base:trusty... found
+checking for Docker image foundationkit-base:wheezy... found
+checking for Docker image foundationkit-base:xenial... found
+```
+
+If you want to update your base images, you can use:
 
 ```
 $ Resources/Docker/build update
+...
 ```
 
-While building, `Resources/Docker/build` will create and use a `DockerBuild` directory. You can remove this with:
+Alternatively, you can update a single base image:
+
+```
+$ Resources/Docker/build update-jessie
+building Docker image foundationkit-base:jessie...
+Sending build context to Docker daemon  2.048kB
+Step 1/7 : FROM debian:jessie
+... 
+```
+
+While in use, `Resources/Docker/build` will create and use a `DockerBuild` directory. You can remove this with:
 
 ```
 $ Resources/Docker/build clean
@@ -217,7 +243,7 @@ This project incorporates (via Git submodules), the following:
 * [uriparser](https://github.com/uriparser/uriparser) by Weijia Song and Sebastian Pipping, licensed according to the terms of a [BSD-like license](https://github.com/uriparser/uriparser/blob/9037441b2acc8e4f779d5ad0388c218901c77f74/COPYING).
 * [uthash](https://github.com/troydhanson/uthash) by Troy D. Hanson, licensed according to the terms of a [MIT/X11-style licence](https://github.com/troydhanson/uthash/blob/3fbec3efe5b5645852c3c123fae9b3a419c929f9/LICENSE).
 * [jansson](https://github.com/akheron/jansson) by Petri Lehtinen, licensed according to the terms of a [MIX/X11-style licence](https://github.com/akheron/jansson/blob/074bb3838f83c8ed5b2ec3ec075c9405e6589214/LICENSE).
-* [libxml2](https://libxml2.org) by [Daniel Veillard and the libxml2 contributors](https://github.com/GNOME/libxml2/blob/bc5a5d658320c37e206fe4e7b525b4a24466d0c6/AUTHORS), licensed accoerding to the terms of a [MIT/X11-style licence](https://github.com/GNOME/libxml2/blob/bc5a5d658320c37e206fe4e7b525b4a24466d0c6/Copyright).
+* [libxml2](https://libxml2.org) by [Daniel Veillard and the libxml2 contributors](https://github.com/GNOME/libxml2/blob/bc5a5d658320c37e206fe4e7b525b4a24466d0c6/AUTHORS), licensed according to the terms of a [MIT/X11-style licence](https://github.com/GNOME/libxml2/blob/bc5a5d658320c37e206fe4e7b525b4a24466d0c6/Copyright).
 
 See the [`ThirdParty`](ThirdParty) directory for further details.
 
