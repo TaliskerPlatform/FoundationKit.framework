@@ -57,6 +57,11 @@ Object::queryInterface(const uuid_t riid, void **object)
 uint32_t __stdcall
 Object::retain(void)
 {
+	if(m_refcount == (uint32_t) -1)
+	{
+		/* This is a singleton; pretend that we just increased from 1 to 2 */
+		return 2;
+	}
 	m_refcount++;
 	return m_refcount;
 }
@@ -64,6 +69,11 @@ Object::retain(void)
 uint32_t __stdcall
 Object::release(void)
 {
+	if(m_refcount == (uint32_t) -1)
+	{
+		/* This is a singleton; pretend that we just decreased from 2 to 1 */
+		return 1;
+	}
 	if(m_refcount == 1)
 	{
 		delete this;

@@ -101,7 +101,7 @@ Process::currentProcess(void)
 	if(!process)
 	{
 		process = new Process();
-		process->m_refcount = -1; /* This is a singleton */
+		process->m_refcount = (uint32_t) -1; /* This is a singleton */
 		process->m_id = (long) getpid();
 		t = strrchr(process_argv[0], '/');
 		if(t)
