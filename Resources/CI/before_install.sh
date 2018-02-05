@@ -143,9 +143,9 @@ fi
 ## Dependency package installation for CI environments                     ##
 #############################################################################
 
-if test x"$system_family" = debian ; then
+if test "$system_family" = "debian" ; then
 	
-	if test $system_type = ubuntu ; then
+	if test "$system_type" = ubuntu ; then
 		run $SUDO add-apt-repository ppa:ubuntu-toolchain-r/test -y
 	fi
 	
@@ -153,12 +153,12 @@ if test x"$system_family" = debian ; then
 	run $SUDO apt-get install -qq build-essential automake autoconf libtool libltdl-dev uuid-dev git-core flex bison
 fi
 
-case $system_type in
+case "$system_type" in
 	debian)
 		run $SUDO apt-get install -qq clang
 		;;
 	ubuntu)
-		case $system_version in
+		case "$system_version" in
 			14*)
 				run $SUDO apt-get install -qq clang
 				;;
