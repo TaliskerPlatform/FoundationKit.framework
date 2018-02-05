@@ -45,7 +45,7 @@ noinst_LTLIBRARIES = liburiparser.la
 
 noinst_DATA = liburiparser.pc
 
-pkginclude_HEADERS = \
+dist_noinst_HEADERS = \
 	include/uriparser/Uri.h \
 	include/uriparser/UriBase.h \
 	include/uriparser/UriDefsAnsi.h \
