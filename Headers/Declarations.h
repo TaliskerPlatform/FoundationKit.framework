@@ -20,6 +20,14 @@
 #ifndef TALISKER_DECLARATIONS_H_
 # define TALISKER_DECLARATIONS_H_      1
 
+#ifndef __cplusplus
+# include <stdbool.h>
+#endif
+#include <stdarg.h>
+#include <stdint.h>
+#include <sys/types.h>
+#include <uuid/uuid.h>
+
 # if !defined(_WIN32) && !defined(__CYGWIN__)
 #  define __stdcall /* */
 # endif
@@ -78,7 +86,7 @@
 # if defined(_WIN32) || defined(__CYGWIN__)
 
 /* On Windows, use dllimport/dllexport */
-		
+
 #  ifdef TALISKER_INTERNAL_
 #   define TALISKER_EXPORT_             __declspec(dllexport)
 #  else
@@ -98,3 +106,12 @@
 # endif
 
 #endif /*!TALKISKER_DECLARATIONS_H_*/
+
+#undef UUID_DEFINE
+#ifdef INITGUID
+# define UUID_DEFINE(name, a1, a2, a3, a4, b1, b2, c1, c2, d1, d2, e1, e2, e3, e4, e5, e6) \
+  const uuid_t name TALISKER_EXPORT_ = { a1, a2, a3, a4, b1, b2, c1, c2, d1, d2, e1, e2, e3, e4, e5, e6}
+#else
+# define UUID_DEFINE(name, a1, a2, a3, a4, b1, b2, c1, c2, d1, d2, e1, e2, e3, e4, e5, e6) \
+	extern const uuid_t name TALISKER_EXPORT_
+# endif

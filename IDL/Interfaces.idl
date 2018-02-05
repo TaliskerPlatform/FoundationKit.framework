@@ -17,14 +17,6 @@ cpp_quote(" *  See the License for the specific language governing permissions a
 cpp_quote(" *  limitations under the License.");
 cpp_quote(" */");
 cpp_quote("");
-cpp_quote("#ifndef __cplusplus");
-cpp_quote("# include <stdbool.h>");
-cpp_quote("#endif");
-cpp_quote("#include <stdarg.h>");
-cpp_quote("#include <stdint.h>");
-cpp_quote("#include <sys/types.h>");
-cpp_quote("#include <uuid/uuid.h>");
-cpp_quote("");
 cpp_quote("#include <FoundationKit/Declarations.h>");
 
 [pointer_default(unique),cheader("FoundationKit/Interfaces.h")]
