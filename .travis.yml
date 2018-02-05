@@ -18,7 +18,7 @@ matrix:
         - FOR=osx
 
 before_install:
-- Resources/Travis/before_install.sh
+- Resources/CI/before_install.sh
 
 before_script:
 - autoreconf -fvi
