@@ -54,15 +54,8 @@ checking "what kind of system the build machine is"
 system_name=`uname -s`
 system_family=`echo $system_name | tr A-Z a-z`
 
-if test -r /etc/os-release ; then
-	. /etc/os-release
-	system_type="$ID"
-	system_name="$NAME"
-	system_version="$VERSION_ID"
-	system_fullname="$PRETTY_NAME"
-fi
-
 if test -r /etc/debian_version ; then
+	system_family="debian"
 	system_type="debian"
 	system_name="Debian"
 	system_version=`cat /etc/debian_version`
@@ -72,11 +65,33 @@ elif test -r /System/Library/CoreServices/SystemVersion.plist ; then
 	system_version=`sw_vers -productVersion`
 fi
 
+if test -r /etc/os-release ; then
+	. /etc/os-release
+	system_type="$ID"
+	system_name="$NAME"
+	system_version="$VERSION_ID"
+	system_fullname="$PRETTY_NAME"
+fi
+
 test x"$system_type" = x"" && system_type="`echo $system_name | tr A-Z a-z | sed s@ @@g`"
 test x"$system_version" = x"" && system_version=`uname -r`
 test x"$system_fullname" = x"" && system_fullname="$system_name $system_version"
 
-result "$system_fullname"
+result "$system_fullname ($system_family/$system_type)"
+
+#############################################################################
+## Dependency package installation
+#############################################################################
+
+if test $system_family = debian ; then
+	
+	if test $system_type = ubuntu ; then
+		run sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+	fi
+	
+	run sudo apt-get update -qq	
+	run sudo apt-get install -qq build-essential automake autoconf libtool libltdl-dev uuid-dev
+fi
 
 #############################################################################
 ## Checks for build Dependencies in CI environments                        ##
