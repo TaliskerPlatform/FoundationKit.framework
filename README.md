@@ -74,7 +74,7 @@ Now that you've cloned the repository and its sub-modules, you can either procee
 
 #### Preparing the source tree
 
-If you have [cloned this repository](#cloning-this-repository), you will need to prepare the repository for building from source using `autoreconf`. You will need to re-run `autoreconf` when you fetch upstream changes which modify the build logic (`configure.ac`, any `Makefile.am` files, etc.).
+If you have [cloned this repository](#cloning-this-repository), you will need to prepare it for building from source using `autoreconf`. You will need to re-run `autoreconf` when you fetch upstream changes which modify the build logic (`configure.ac`, any `Makefile.am` files, etc.).
 
 You should skip this step if you obtained the sources from a distribution tarball.
 
@@ -143,7 +143,7 @@ On other systems, Foundation Toolkit is installed to `${libdir}` and `${included
 
 **Note:** For instructions on building from source _without_ Docker, see the _[Building from source](#building-from-source)_ section, above, for further information.
 
-Once you have [cloned this repository](#cloning-the-repository), you can run the following:
+Once you have [cloned this repository](#cloning-this-repository), you can run the following:
 
 ```
 $ Resources/Docker/build
