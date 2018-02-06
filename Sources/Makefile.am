@@ -32,22 +32,22 @@ libFoundationKit_la_LIBADD = ${top_builddir}/ThirdParty/uriparser/liburiparser.l
 ## IObject client                                                          ##
 #############################################################################
 
-frameworklib_LTLIBRARIES += libTalisker.FoundationKit.IObject.la
-libFoundationKit_la_LIBADD += libTalisker.FoundationKit.IObject.la
-libTalisker_FoundationKit_IObject_la_SOURCES = IObject_uuids.c
+frameworklib_LTLIBRARIES += libTalisker.IObject.la
+libFoundationKit_la_LIBADD += libTalisker.IObject.la
+libTalisker_IObject_la_SOURCES = IObject_uuids.c
 
 #############################################################################
 ## IFactory client                                                         ##
 #############################################################################
 
-frameworklib_LTLIBRARIES += libTalisker.FoundationKit.IFactory.la
-libFoundationKit_la_LIBADD += libTalisker.FoundationKit.IFactory.la
-libTalisker_FoundationKit_IFactory_la_SOURCES = IFactory_uuids.c
+frameworklib_LTLIBRARIES += libTalisker.IFactory.la
+libFoundationKit_la_LIBADD += libTalisker.IFactory.la
+libTalisker_IFactory_la_SOURCES = IFactory_uuids.c
 
 #############################################################################
 ## IRegistry client                                                        ##
 #############################################################################
 
-frameworklib_LTLIBRARIES += libTalisker.FoundationKit.IRegistry.la
-libFoundationKit_la_LIBADD += libTalisker.FoundationKit.IRegistry.la
-libTalisker_FoundationKit_IRegistry_la_SOURCES = IRegistry_uuids.c
+frameworklib_LTLIBRARIES += libTalisker.IRegistry.la
+libFoundationKit_la_LIBADD += libTalisker.IRegistry.la
+libTalisker_IRegistry_la_SOURCES = IRegistry_uuids.c
