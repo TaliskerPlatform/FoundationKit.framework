@@ -1,8 +1,6 @@
 #! /bin/sh
 
-## Talisker: Foundation Toolkit
-
-## Copyright 2012-2017 Mo McRoberts.
+## Copyright 2017 Mo McRoberts.
 ##
 ##  Licensed under the Apache License, Version 2.0 (the "License");
 ##  you may not use this file except in compliance with the License.
@@ -16,13 +14,13 @@
 ##  See the License for the specific language governing permissions and
 ##  limitations under the License.
 
-PACKAGE=FoundationKit
+PACKAGE=$(basename `pwd` | tr A-Z a-z)
 
 if ! test -r Resources/CI/mkdist 2>&1 ; then
-	echo "This script must be executed from the root of the $PACKAGE source tree" >&2
+	echo "This script must be executed from the root of the source tree" >&2
 	echo "and invoked as:" >&2
 	echo "" >&2
-	echo "Resources/CI/mkdist" >&2
+	echo "BuildScripts/mkdist" >&2
 	exit 1
 fi
 

@@ -18,7 +18,7 @@ matrix:
         - FOR=osx
 
 before_install:
-- Resources/CI/before_install.sh
+- BuildResources/CI/before_install.sh
 
 before_script:
 - mkdir -p ThirdParty/libxml2/m4
