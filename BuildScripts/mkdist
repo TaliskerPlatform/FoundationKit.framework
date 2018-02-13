@@ -1,5 +1,10 @@
 #! /bin/sh
 
+## Create a distribution tarball without having to invoke `make dist`
+
+## This script is part of the Talisker Developer Tools
+## https://github.com/taliskerPlatform/Developer
+
 ## Copyright 2017 Mo McRoberts.
 ##
 ##  Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,7 +21,7 @@
 
 PACKAGE=$(basename `pwd` | tr A-Z a-z)
 
-if ! test -r Resources/CI/mkdist 2>&1 ; then
+if ! test -r BuildScripts/mkdist 2>&1 ; then
 	echo "This script must be executed from the root of the source tree" >&2
 	echo "and invoked as:" >&2
 	echo "" >&2
@@ -46,7 +51,10 @@ grep -v -e '^\.$' -e '/\..*' \
 	-e '\.tar\.' \
 	-e '/filelist\.' \
 	-e '/config\.status$' \
-	-e '/autom4te\.cache$' -e '/autom4te\.cache/' \
+	-e '/autom4te\.cache/' \
+	-e '/BuildDependencies/' \
+	-e '/DockerBuild/' \
+	-e '/BuildProducts/' \
 	-e '\.log$' -e '\.trs$' -e '\.out$' -e '\.tmp$' -e '\.bak$' -e '~$' \
 	<filelist.cur \
 	>filelist.dist
