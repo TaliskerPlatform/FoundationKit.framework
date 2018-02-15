@@ -10,3 +10,6 @@
 [submodule "ThirdParty/jansson"]
 	path = ThirdParty/jansson
 	url = git://github.com/akheron/jansson.git
+[submodule "BuildScripts"]
+	path = BuildScripts
+	url = git://github.com/TaliskerPlatform/BuildScripts.git

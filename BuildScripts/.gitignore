@@ -1,6 +1,0 @@
-*
-!/.gitignore
-!/tal-*.mk
-!/talisker.*
-!/docker-build
-!/mkdist
