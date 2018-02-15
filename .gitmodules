@@ -13,3 +13,6 @@
 [submodule "BuildScripts"]
 	path = BuildScripts
 	url = git://github.com/TaliskerPlatform/BuildScripts.git
+[submodule "M4"]
+	path = M4
+	url = git://github.com/TaliskerPlatform/M4.git

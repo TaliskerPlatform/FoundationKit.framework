@@ -100,7 +100,7 @@ AC_CHECK_FUNC([dlopen],,[
 ])
 
 
-PRIVATE_CONFIG_URIPARSER
+m4_include([ThirdParty/uriparser-configure.m4])
 
 TAL_CONFIG_SUBDIR([ThirdParty/jansson])
 TAL_CONFIG_SUBDIR([ThirdParty/libxml2],,[--without-python --with-minimum --with-output])

@@ -37,7 +37,6 @@ dnl STRICT  LIABILITY,  OR  TORT (INCLUDING  NEGLIGENCE  OR  OTHERWISE)
 dnl ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
 dnl OF THE POSSIBILITY OF SUCH DAMAGE.
 dnl
-AC_DEFUN([PRIVATE_CONFIG_URIPARSER],[
 
 ## Check for wprintf
 AC_MSG_CHECKING(for wprintf)
@@ -120,5 +119,3 @@ ThirdParty/uriparser/doc/Doxyfile
 ])
 
 AC_CONFIG_FILES([ThirdParty/uriparser/doc/release.sh], [chmod a+x ThirdParty/uriparser/doc/release.sh])
-
-])dnl
